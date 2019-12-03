@@ -28,4 +28,11 @@ export class TasksComponent implements OnInit {
     this._taskService.setFormTask(task);
   }
 
+  onDelete(task: Task) {
+    if(confirm('Delete Task?')) {
+       this._taskService.deleteTask(task);
+    }
+   
+  }
+
 }

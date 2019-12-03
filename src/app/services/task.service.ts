@@ -28,6 +28,27 @@ export class TaskService {
      this.taskSource.next(task);
    }
 
+     
+  addTask(task: Task) {
+    this.tasks.unshift(task);
+  }
 
+  updateTask(task: Task) {
+    this.tasks.forEach((currentTask, idx) => {
+      if(currentTask.id === task.id) {
+        this.tasks.splice(idx, 1);
+      }
+    });
+    this.tasks.unshift(task);
+  }
+
+
+  deleteTask(task: Task) {
+    this.tasks.forEach((currentTask, idx) => {
+      if(currentTask.id === task.id) {
+        this.tasks.splice(idx, 1);
+      }
+    });
+  }
 
 }
