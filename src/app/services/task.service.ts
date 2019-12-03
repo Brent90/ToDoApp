@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Task } from '../interfaces/task';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +8,8 @@ import { Injectable } from '@angular/core';
 export class TaskService {
 
   tasks = [];
+  private taskSource = new BehaviorSubject<Task>({id: null, text: null, date: null});
+  selectedTask = this.taskSource.asObservable();
 
   constructor() {
     this.tasks = [
@@ -15,8 +19,13 @@ export class TaskService {
     ]
    }
 
-   getTasks() {
-     return this.tasks;
+   getTasks(): Observable<Task[]> {
+     return of(this.tasks);
+   }
+
+   //each time a task is clicked we subscribe to it with this method
+   setFormTask(task: Task) {
+     this.taskSource.next(task);
    }
 
 

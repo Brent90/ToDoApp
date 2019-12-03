@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
+import { Task } from 'src/app/interfaces/task';
 
 @Component({
   selector: 'app-tasks',
@@ -18,7 +19,13 @@ export class TasksComponent implements OnInit {
   constructor(private _taskService: TaskService) { }
 
   ngOnInit() {
-    this.tasks = this._taskService.getTasks();
+    this._taskService.getTasks().subscribe(task => {
+      this.tasks = task;
+    });
+  }
+
+  onSelect(task: Task) {
+    this._taskService.setFormTask(task);
   }
 
 }
