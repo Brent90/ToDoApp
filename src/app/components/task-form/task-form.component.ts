@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-task-form',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class TaskFormComponent implements OnInit {
   text:string;
 
-  constructor() { }
+  constructor(private _taskService: TaskService) { }
 
   ngOnInit() {
   }
