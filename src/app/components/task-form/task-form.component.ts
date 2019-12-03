@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent implements OnInit {
+  text:string;
 
   constructor() { }
 

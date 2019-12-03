@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { TasksComponent } from './components/tasks/tasks.component';
+import {FormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TasksComponent } from './components/tasks/tasks.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
