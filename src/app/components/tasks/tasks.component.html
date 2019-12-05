@@ -1,5 +1,5 @@
 <ul class="list-group">
-    <li *ngFor="let task of tasks" class="list-group-item d-flex justify-content-between align-items-center">
+    <li *ngFor="let task of tasks" [class.list-group-item-secondary]="selectedTask === task" class="list-group-item d-flex justify-content-between align-items-center">
         <a (click)="onSelect(task)" href="#">{{task.text}}</a>
         <span style="color:#777">{{task.date | date: 'short'}}</span>
         <i (click)="onDelete(task)" class="fa fa-remove"></i>

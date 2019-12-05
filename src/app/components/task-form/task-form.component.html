@@ -5,7 +5,7 @@
         </div>
 
         <input [disabled]="!this.text" type="submit" value="Add Task" class="btn btn-primary">
-        <button [hidden]="!this.text" type="button" class="btn btn-warning ml-2">Clear</button>
+        <button (click)="clearInput()" [hidden]="!this.text" type="button" class="btn btn-warning ml-2">Clear</button>
 
     </form>
 </div>

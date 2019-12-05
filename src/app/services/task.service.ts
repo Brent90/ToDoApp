@@ -11,6 +11,9 @@ export class TaskService {
   private taskSource = new BehaviorSubject<Task>({id: null, text: null, date: null});
   selectedTask = this.taskSource.asObservable();
 
+  private stateSoure = new BehaviorSubject<boolean>(true);
+  stateClear = this.stateSoure.asObservable();
+
   constructor() {
     this.tasks = [
       {id: '1', text: 'Make app', date: new Date()},
@@ -49,6 +52,10 @@ export class TaskService {
         this.tasks.splice(idx, 1);
       }
     });
+  }
+
+  clearState() {
+    this.stateSoure.next(true);
   }
 
 }

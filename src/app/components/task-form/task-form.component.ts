@@ -23,6 +23,7 @@ export class TaskFormComponent implements OnInit {
           this.date = task.date; 
           //since we clicked it, it's not a new task
           this.isNewTask = false;
+          this._taskService.clearState();
       }
     })
    }
@@ -50,6 +51,16 @@ export class TaskFormComponent implements OnInit {
       }
       this._taskService.updateTask(updatedTask);
     }
+
+    this.clearInput();
+
+  }
+
+  clearInput() {
+    this.isNewTask = true;
+    this.id = '';
+    this.text = '';
+    this.date = '';
   }
 
   generateID() {
