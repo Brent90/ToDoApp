@@ -16,14 +16,21 @@ export class TaskService {
 
   constructor() {
     this.tasks = [
-      {id: '1', text: 'Make app', date: new Date()},
-      {id: '2', text: 'LeetCode', date: new Date()},
-      {id: '3', text: 'Play with dog', date: new Date()},
+      // {id: '1', text: 'Make app', date: new Date()},
+      // {id: '2', text: 'LeetCode', date: new Date()},
+      // {id: '3', text: 'Play with dog', date: new Date()},
     ]
    }
 
    getTasks(): Observable<Task[]> {
-     return of(this.tasks);
+     if(localStorage.getItem('tasks') === null) {
+       this.tasks = [];
+     }else{
+       this.tasks = JSON.parse(localStorage.getItem('tasks'));
+     }
+     return of(this.tasks.sort((a,b) => {
+       return a.date - b.date;
+     }));
    }
 
    //each time a task is clicked we subscribe to it with this method
@@ -34,6 +41,10 @@ export class TaskService {
      
   addTask(task: Task) {
     this.tasks.unshift(task);
+
+    //add task to local storage
+    this.setLocalStorage(task);
+
   }
 
   updateTask(task: Task) {
@@ -42,6 +53,9 @@ export class TaskService {
         this.tasks.splice(idx, 1);
       }
     });
+    //update local stroage
+    this.setLocalStorage(task);
+
     this.tasks.unshift(task);
   }
 
@@ -52,10 +66,21 @@ export class TaskService {
         this.tasks.splice(idx, 1);
       }
     });
+
+    //delete task from local storage
+    this.setLocalStorage(task);
+
   }
 
   clearState() {
     this.stateSoure.next(true);
   }
+
+
+  setLocalStorage(task: Task) {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+
 
 }
